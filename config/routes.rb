@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   post("/update_menu/:id_to_modify", { :controller => "menus", :action => "update_row" })
   get("/update_menu_time_index/:prefill_with_id", { :controller => "menus", :action => "update_time_index" })
   get("/update_menu_time_cook/:prefill_with_id", { :controller => "menus", :action => "update_time_cook" })
+  post("/five_more_minutes/:prefill_with_id", { :controller => "menus", :action => "give_five" })
   
   # DELETE
   get("/delete_menu/:id_to_remove", { :controller => "menus", :action => "destroy_row" })
@@ -96,11 +97,19 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_recipe/:id_to_remove", { :controller => "recipes", :action => "destroy_row" })
-
   #------------------------------
   root "recipes#index"
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Routes for the users resource:
+
+  get("/account/:user_id", { :controller => "accounts", :action => "show_user_work" })  
+
+  #-----------line 102 is the route that I created to -------------------
+  
+  #------------------------------
+
 end
